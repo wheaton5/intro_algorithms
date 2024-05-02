@@ -1,0 +1,127 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+\usepackage[sc]{mathpazo}
+\usepackage[T1]{fontenc}
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,headheight=3ex,headsep=3ex]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{matrix}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{\arg\!\max} 
+\newcommand{\blankline}{\quad\pagebreak[2]}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdfpagemode=FullScreen,
+    }
+    \setlength{\parindent}{0pt}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+
+\title{COMP 3270 \\ Introduction to Algorithms \\ Lecture notes week 1}
+\author{Haynes Heaton}
+
+
+\maketitle
+\blankline
+
+\begin{tabular*}{.93\textwidth}{@{\extracolsep{\fill}}lr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Modify information %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hline
+\end{tabular*}
+
+
+\section*{Lecture Objectives}
+\begin{itemize}
+\item Introduction to the class and me
+
+\end{itemize}
+
+\section*{Course Introduction}
+
+In my opinion, introduction to algorithms is one of a small number of courses that are foundational to a computer science degree and your success in your career whether that is front end web, data science, cloud computing, dev ops, security, etc. Basic programming is the first superpower you learn in computer science. And I call it a superpower because to those who do not have that skill, it is indistinguishable from magic. And what can you do with superpowers? Be a hero. When you can solve a problem for a company that was previously either unsolvable or took lots of manual effort to solve with software, you are a hero. The next superpower you learn is data structures. This is a lot of day to day software engineering. You have to process data and access it efficiently. Next comes algorithms. The difference between algorithms and data structures is a little bit muddy. But in general, algorithms are about solving a particular problem efficiently while data structures are more about storing and accessing data efficiently. But they are highly intertwined and we will need to learn several data structures in this class to enable our algorithms to be efficient. Efficient algorithm design is also a super power. I remember during my PhD, another student in my lab was talking to me about her research. She came from a mathematics background and said she had a really good statistical model for her problem, but it was intractable to compute--it would take decades of compute on real world sized problems to solve. I said, "Well, then you have the perfect PhD advisor because he is an algorithm guru. I bet there is some way to speed it up." A few weeks later, he had developed a method using a technique called dynamic programming, a topic we will cover in this class, that solved these problems in less than a minute. Decades to a minute---that's a superpower. \\ \\
+
+My research is in computational biology, more specifically algorithm development to extract various information from DNA sequencing data. I'll provide several examples from my research of how I have applied algorithms to these problems. Unlike some other algorithm-intense fields of research, I start with a problem that is worth solving and create a solution with tools from all of computer science, statistics, math, physics, etc. I make this distinction because some people’s research focuses on a particular algorithm itself and sometimes looks for problems that method can solve rather than starting with a problem worth solving. These people may spend their entire career focused on one method such as Markov chain Monte Carlo or adversarial neural networks. I enjoy my work in part because I get to employ the best algorithm for the given problem and get to choose among a huge breadth of options. This course is about starting to build out a toolkit of problems solving techniques, specific common algorithms that use those techniques, and giving you the ability to analyze the efficiency and correctness of those algorithms. \\ \\
+
+
+
+\iffalse
+Assignments will be in the form of nearly weekly homeworks which will have a combination of short answer and implementation. The lowest homework will be dropped. There will be a midterm and final exam. Questions will attempt to be conceptual in nature. Example exam questions might be something like "What problem is Karger's algorithm trying to solve: be specific." and "How does Karger's algorithm go about solving this problem for unweighted graphs?" Good answers to these would be "finding the minimum weight cut in a graph" or "global min-cut (not min s-t cut)" and "Karger's algorithm picks random edges and contracts the nodes on either end into a new node. It then deletes self edges and proceeds until there are only 2 nodes left. The remaining edges between these two nodes represent a cut in the original graph that is probabilistically a small cut. It repeats this process many times and picks the smallest which is probabilistically the min-cut." \\ \\
+
+The late policy is dealt with by having 5 late days. No more than 3 late days can be used on any single assignment. This is to allow me to grade things in a timely manner and to also get the final grades in on time. There will be a standard grading scale of 90 and up is an A etc. Assignment and final grades may be scaled up but not down according to whether I think those with mastery of the material are receiving an A or not.  \\ \\
+
+One of the most important things that I want to get across in this class is actually more difficult than it seems when actually teaching a course on graph algorithms. In my experience, often the thing that creates a breakthrough is to even think of casting your problem as a graph problem. In a graph algorithms course, I can give you a problem such as “how would you cast this as a graph problem?” Often the answer will be very straight forward. The real trick is when you are not primed as you are here to everything being about graphs. It's to think of a problem that seems to have nothing to do with graphs and be like “hey, what if I treat these objects as nodes and these values as weights of edges between those nodes…” And then if you are a little lucky you might then say “Oh wait! This is a classic graph problem!” Even if that graph problem is NP hard, there may be good approximation algorithms or just allow you to think of the problem in a new light with the abstract formulation that allows you to tackle it from this new perspective. \\ \\
+\fi
+
+\section*{What is an algorithm?}
+
+An algorithm is a series of computational steps that solve a computational problem. Then what is a computational problem? Well, we can think of this as a function. A function has inputs and outputs. For every input, there is at least one correct output. But in general we only care to find one correct output, thus making this a true function (one-to-one). Because this is a function, the set of all possible inputs may be infinite. For an infinite number of inputs, we cannot simply store a mapping from each input to each output. We must have a method that takes the input and through a series of steps generates a correct output. Also, given an input and output, there is generally a way to determine if that output is correct for that input. 
+
+
+
+\end{document}
